@@ -1,0 +1,29 @@
+version: "3"
+
+volumes:
+  postgres:
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=develop
+      - POSTGRES_PASSWORD=thispassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgres:/var/lib/postgresql/data"
+  web:
+    build: .
+    volumes:
+      - .:/app
+    tty: true
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+    depends_on:
+      - db
+
