@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -6,6 +8,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'relations' do
-    it { should have_many(:user) }
+    it { should have_many(:posts) }
   end
 end

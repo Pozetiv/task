@@ -1,26 +1,19 @@
-module Api::V1
-  class MarksController < ApplicationController
-    before_action
-  
-    def create
-      result = MarksCreate.call(post: post,
-                                mark: marks_params[:result])
+# frozen_string_literal: true
 
-      if result.success?
-        render json: result.respond, status: :ok
-      else
-        render json: { errors: result.errors }, status: :unprocessable_entity
+module Api
+  module V1
+    class MarksController < ApplicationController
+      def create
+        result = Marks::Create.call(user_id: current_user_id,
+                                    post_id: params[:post_id],
+                                    grade: params.permit(:grade)[:grade])
+
+        if result.success?
+          render json: { avg_grade: result.avg }, status: :ok
+        else
+          render json: { errors: result.errors }, status: :unprocessable_entity
+        end
       end
-    end
-  
-    private
-  
-    def marks_params
-      params.require(:mark).permit(:result)
-    end
-
-    def post
-      @post ||= Post.find(params[:post_id])
     end
   end
 end

@@ -11,7 +11,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -36,6 +36,10 @@ group :development, :test do
   gem "rspec-rails", "~> 3.9"
   gem "faker", "~> 2.8"
   gem 'factory_bot_rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-performance'
+  gem 'rubocop-rspec'
 end
 
 group :development do
@@ -50,4 +54,5 @@ group :test do
   gem 'database_cleaner'
 end
 gem "interactor-rails", "~> 2.0"
+gem 'active_model_serializers', '~> 0.10.0'
 

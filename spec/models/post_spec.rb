@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
@@ -8,5 +10,6 @@ RSpec.describe Post, type: :model do
 
   describe 'relations' do
     it { should belong_to(:user) }
+    it { should have_many(:marks) }
   end
 end
